@@ -556,28 +556,31 @@ export const getAllBanners = async (req, res) => {
 // Endpoint to send email
 export const sendemail   = async(req, res) => {
     try {
+ 
       
-const transporter =nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
       service: 'gmail',
        host: 'smtp.gmail.com',
    port: 465,
    secure: false,
   auth: {
-    user: 'appsupport@global-opportunities.co.in', // Your Gmail email address
-    pass: '45824582' // Your Gmail password
+    user: 'mohit.global67@gmail.com', // Your Gmail email address
+    pass: 'vgpy qnih nmkr xmsn' // Your Gmail password
   }
 });
     // Extract email details from request body
       const { to, subject, text } = req.body;
       
- 
+        const htmlContent = `
+    <h2 style="color:green;" >${subject}</h2>
+    <p>${text}</p>`;
 
     // Create email options
     const mailOptions = {
-      to: 'mohit.global67@gmail.com',
-    //   to :"mohit@global-opportunities.net",
-      subject:"test data",
-      text:"efnkjnkj" 
+      to: to,
+      subject:subject,
+        text: text ,
+         html: htmlContent
     };
 
     // Send email
